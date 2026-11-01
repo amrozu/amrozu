@@ -16,7 +16,7 @@ jobs:
       - uses: amrozu/river-card@v1
         with:
           river: wisla
-          name: Łukasz Amroz
+          name: Łukasz Amróz
           role: Tech Lead
           company: Property Group
           city: Warszawa
