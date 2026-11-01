@@ -2,28 +2,22 @@ name: Update profile card
 
 on:
   schedule:
-    - cron: '17 4 * * *' # codziennie ok. 5:17/6:17 czasu polskiego
+    - cron: '17 4 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  update:
+  card:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: amrozu/river-card@v1
         with:
-          node-version: 24
-      - name: Fetch contributions
-        run: node src/fetch.ts amrozu
-      - name: Render SVG
-        run: node src/generate.ts && cp out/profile-light.svg out/profile-dark.svg assets/
-      - name: Commit if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets data/contributions.json
-          git diff --cached --quiet || git commit -m "chore: update profile card"
-          git push
+          river: wisla
+          name: Łukasz Amroz
+          role: Tech Lead
+          company: Property Group
+          city: Warszawa
+          output_dir: assets
